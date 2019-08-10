@@ -1,26 +1,19 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import * as React from 'react';
+import {useState}  from 'react';
+import Budget from './Budget/Budget';
+import Add from './Add/Add';
+import Expenses from './Expenses/Expenses';
+import useBudget from './hooks/useBudget';
 
-const App: React.FC = () => {
+const App = () => {
+  const { expenses, addExpense, deleteExpense } = useBudget();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Budget expenses={expenses} />
+      <Add expenses={expenses} addExpense={addExpense} />
+      <Expenses expenses={expenses} deleteExpense={deleteExpense} />
     </div>
   );
-}
+};
 
 export default App;
